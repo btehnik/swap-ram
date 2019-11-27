@@ -10,7 +10,13 @@ for DIR in `find /proc/ -maxdepth 1 -type d | egrep "^/proc/[0-9]"` ; do
         do
                 let SUM=$SUM+$SWAP/1024
         done
-        echo "PID=$PID - Swap used: $SUM - ($PROGNAME )"
+        echo "PID: $PID - Swap used: $SUM MB - ($PROGNAME )"
         SUM=0
 done
 
+########################################################################
+#									#
+# To run the script use command:					#
+# bash swap.sh | egrep -v "Swap used: 0" | sort -rn -k 6 | head -n 10	#
+#									#
+########################################################################
