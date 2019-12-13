@@ -15,4 +15,8 @@ for DIR in `find /proc/ -maxdepth 1 -type d | egrep "^/proc/[0-9]"` ; do
 
 done > $RES
 
+echo "SWAP: "
 egrep -v "Swap used: 0" $RES | sort -rn -k 6 | head -n 10 | cat -n
+
+echo "RAM: "
+ps aux | awk '{print $6/1024 " MB\t\t" $11}' | sort -nr  | head -n 10 | cat -n
